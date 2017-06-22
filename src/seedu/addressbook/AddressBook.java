@@ -869,11 +869,16 @@ public class AddressBook {
      */
     private static HashMap<PersonProperty,String> makePersonFromData(String name, String phone, String email) {
         final HashMap<PersonProperty,String> person = new HashMap<PersonProperty,String>();
-        person.put(PersonProperty.NAME, name);
-        person.put(PersonProperty.EMAIL, email);
-        person.put(PersonProperty.PHONE, phone);
+        registerPersonDetails(name, phone, email, person);
         return person;
     }
+
+	private static void registerPersonDetails(String name, String phone, String email,
+			final HashMap<PersonProperty, String> person) {
+		person.put(PersonProperty.NAME, name);
+        person.put(PersonProperty.EMAIL, email);
+        person.put(PersonProperty.PHONE, phone);
+	}
     public enum PersonProperty  {NAME, EMAIL, PHONE};
 
     /**
