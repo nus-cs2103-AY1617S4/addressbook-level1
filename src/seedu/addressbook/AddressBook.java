@@ -989,14 +989,11 @@ public class AddressBook {
 
         // phone is last arg, target is from prefix to end of string
         if (indexOfPhonePrefix > indexOfEmailPrefix) {
-            return removePrefixSign(encoded.substring(indexOfPhonePrefix, encoded.length()).trim(),
-                    PERSON_DATA_PREFIX_PHONE);
+        	return removePhonePrefix(encoded.substring(indexOfPhonePrefix, encoded.length()).trim());
 
         // phone is middle arg, target is from own prefix to next prefix
         } else {
-            return removePrefixSign(
-                    encoded.substring(indexOfPhonePrefix, indexOfEmailPrefix).trim(),
-                    PERSON_DATA_PREFIX_PHONE);
+        	return removePhonePrefix(encoded.substring(indexOfPhonePrefix, indexOfEmailPrefix).trim());
         }
     }
 
@@ -1012,14 +1009,11 @@ public class AddressBook {
 
         // email is last arg, target is from prefix to end of string
         if (indexOfEmailPrefix > indexOfPhonePrefix) {
-            return removePrefixSign(encoded.substring(indexOfEmailPrefix, encoded.length()).trim(),
-                    PERSON_DATA_PREFIX_EMAIL);
+            return removeEmailPrefix(encoded.substring(indexOfEmailPrefix, encoded.length()).trim());
 
         // email is middle arg, target is from own prefix to next prefix
         } else {
-            return removePrefixSign(
-                    encoded.substring(indexOfEmailPrefix, indexOfPhonePrefix).trim(),
-                    PERSON_DATA_PREFIX_EMAIL);
+            return removeEmailPrefix(encoded.substring(indexOfEmailPrefix, indexOfPhonePrefix).trim());
         }
     }
 
@@ -1142,16 +1136,37 @@ public class AddressBook {
      *         UTILITY METHODS
      * ============================
      */
-
-    /**
-     * Removes sign(p/, d/, etc) from parameter string
+    
+    /* Removes the phone number data prefix from a phone number string
      *
-     * @param s  Parameter as a string
-     * @param sign  Parameter sign to be removed
-     * @return  string without the sign
+     * @param fullPhoneString the original phone number data string
+     * @return phone number string with the prefix removed
      */
-    private static String removePrefixSign(String s, String sign) {
-        return s.replace(sign, "");
+    private static String removePhonePrefix(String fullPhoneString) {
+        return removePrefix(fullPhoneString, PERSON_DATA_PREFIX_PHONE);
+    }
+
+    /* Removes the email data prefix from a email string
+     *
+     * @param fullEmailString the original email data string
+     * @return email data string with the prefix removed
+     */
+    private static String removeEmailPrefix(String fullEmailString) {
+        return removePrefix(fullEmailString, PERSON_DATA_PREFIX_EMAIL);
+    }
+
+    /* Removes a prefix string from a full string, 
+     * provided it is a proper prefix
+     *
+     * @param fullString the full string to modify
+     * @param prefix the prefix string to be removed
+     * @return string with the prefix removed
+     */
+    private static String removePrefix(String fullString, String prefix) {
+        if (fullString.startsWith(prefix)) {
+            return fullString.substring(prefix.length());
+        }
+        return fullString;
     }
 
     /**
