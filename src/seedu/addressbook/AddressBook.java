@@ -209,14 +209,59 @@ public class AddressBook {
      */
 
     public static void main(String[] args) {
-        showWelcomeMessage();
-        processProgramArgs(args);
-        loadDataFromStorage();
+        showToUser(DIVIDER, DIVIDER, VERSION, MESSAGE_WELCOME, DIVIDER);
+        if (args.length >= 2) {
+            showToUser(MESSAGE_INVALID_PROGRAM_ARGS);
+            exitProgram();
+        }
+        if (args.length == 1) {
+            setupGivenFileForStorage(args[0]);
+        }
+        if(args.length == 0) {
+            setupDefaultFileForStorage();
+        }
+        initialiseAddressBookModel(loadPersonsFromFile(storageFilePath));
         while (true) {
-            String userCommand = getUserInput();
-            echoUserCommand(userCommand);
-            String feedback = executeCommand(userCommand);
-            showResultToUser(feedback);
+            System.out.print(LINE_PREFIX + "Enter command: ");
+            String inputLine = SCANNER.nextLine();
+            // silently consume all blank and comment lines
+            while (inputLine.trim().isEmpty() || inputLine.trim().charAt(0) == INPUT_COMMENT_MARKER) {
+                inputLine = SCANNER.nextLine();
+            }
+            String userCommand = inputLine;
+            System.out.println(LINE_PREFIX + "[Command entered:" + userCommand + "]");
+
+            final String[] split = userCommand.trim().split("\\s+", 2);
+            final String[] commandTypeAndParams = split.length == 2 ? split : new String[] { split[0], "" };
+            final String commandType = commandTypeAndParams[0];
+            final String commandArgs = commandTypeAndParams[1];
+            String feedback;
+            switch (commandType) {
+            case COMMAND_ADD_WORD:
+                feedback = executeAddPerson(commandArgs);
+                break;
+            case COMMAND_FIND_WORD:
+                feedback = executeFindPersons(commandArgs);
+                break;
+            case COMMAND_LIST_WORD:
+                feedback = executeListAllPersonsInAddressBook();
+                break;
+            case COMMAND_DELETE_WORD:
+                feedback = executeDeletePerson(commandArgs);
+                break;
+            case COMMAND_CLEAR_WORD:
+                feedback = executeClearAddressBook();
+                break;
+            case COMMAND_HELP_WORD:
+                feedback = getUsageInfoForAllCommands();
+                break;
+            case COMMAND_EXIT_WORD:
+                executeExitProgramRequest();
+            default:
+                feedback = getMessageForInvalidCommandInput(commandType, getUsageInfoForAllCommands());
+            }
+            System.out.println(LINE_PREFIX + feedback);
+            System.out.println(LINE_PREFIX + DIVIDER);
         }
     }
 
