@@ -14,7 +14,7 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for further tests
 ##########################################################
 
   # should catch invalid args format
@@ -39,6 +39,15 @@
   add Dickson Ee e/dickson@nus.edu.sg p/444444
   list
   add Esther Potato p/555555 e/esther@notreal.potato
+  list
+
+  # test sorted order
+  add Brendon Boo p/300000 e/brendonb@nus.edu.sg
+  list
+  sort
+
+  # remove extra person before carrying on
+  delete 3
   list
 
 ##########################################################

@@ -62,7 +62,10 @@
 || list: Displays all persons as a list with index numbers.
 || 	Example: list
 || 
-|| delete: Deletes a person identified by the index number used in the last find/list call.
+|| sort: Displays all persons as a list with index numbers, sorted by name in lexicographically increasing order.
+|| 	Example: sort
+|| 
+|| delete: Deletes a person identified by the index number used in the last find/list/sort call.
 || 	Parameters: INDEX
 || 	Example: delete 1
 || 
@@ -171,6 +174,41 @@
 || 
 || 5 persons found!
 || ===================================================
+|| Enter command: || [Command entered:  add Brendon Boo p/300000 e/brendonb@nus.edu.sg]
+|| New person added: Brendon Boo, Phone: 300000, Email: brendonb@nus.edu.sg
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com
+|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
+|| 	3. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg
+|| 	4. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg
+|| 	5. Esther Potato  Phone Number: 555555  Email: esther@notreal.potato
+|| 	6. Brendon Boo  Phone Number: 300000  Email: brendonb@nus.edu.sg
+|| 
+|| 6 persons found!
+|| ===================================================
+|| Enter command: || [Command entered:  sort]
+|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com
+|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
+|| 	3. Brendon Boo  Phone Number: 300000  Email: brendonb@nus.edu.sg
+|| 	4. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg
+|| 	5. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg
+|| 	6. Esther Potato  Phone Number: 555555  Email: esther@notreal.potato
+|| 
+|| 6 persons found!
+|| ===================================================
+|| Enter command: || [Command entered:  delete 3]
+|| Deleted Person: Brendon Boo  Phone Number: 300000  Email: brendonb@nus.edu.sg
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com
+|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
+|| 	3. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg
+|| 	4. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg
+|| 	5. Esther Potato  Phone Number: 555555  Email: esther@notreal.potato
+|| 
+|| 5 persons found!
+|| ===================================================
 || Enter command: || [Command entered:  find]
 || 
 || 0 persons found!
@@ -207,28 +245,28 @@
 || ===================================================
 || Enter command: || [Command entered:  delete]
 || Invalid command format: delete 
-|| delete: Deletes a person identified by the index number used in the last find/list call.
+|| delete: Deletes a person identified by the index number used in the last find/list/sort call.
 || 	Parameters: INDEX
 || 	Example: delete 1
 || 
 || ===================================================
 || Enter command: || [Command entered:  delete should be only one number]
 || Invalid command format: delete 
-|| delete: Deletes a person identified by the index number used in the last find/list call.
+|| delete: Deletes a person identified by the index number used in the last find/list/sort call.
 || 	Parameters: INDEX
 || 	Example: delete 1
 || 
 || ===================================================
 || Enter command: || [Command entered:  delete -1]
 || Invalid command format: delete 
-|| delete: Deletes a person identified by the index number used in the last find/list call.
+|| delete: Deletes a person identified by the index number used in the last find/list/sort call.
 || 	Parameters: INDEX
 || 	Example: delete 1
 || 
 || ===================================================
 || Enter command: || [Command entered:  delete 0]
 || Invalid command format: delete 
-|| delete: Deletes a person identified by the index number used in the last find/list call.
+|| delete: Deletes a person identified by the index number used in the last find/list/sort call.
 || 	Parameters: INDEX
 || 	Example: delete 1
 || 
