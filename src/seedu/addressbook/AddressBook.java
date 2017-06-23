@@ -532,8 +532,12 @@ public class AddressBook {
     private static ArrayList<Person> getPersonsWithNameContainingAnyKeyword(Collection<String> keywords) {
         final ArrayList<Person> matchedPersons = new ArrayList<>();
         for (Person person : getAllPersonsInAddressBook()) {
-            final Set<String> wordsInName = new HashSet<>(splitByWhitespace(getNameFromPerson(person)));
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            final ArrayList<String> wordsInNameList = splitByWhitespace(getNameFromPerson(person));
+            for (String string : wordsInNameList) {
+                string = string.toLowerCase();
+            }
+            final Set<String> wordsInNameSet = new HashSet<>(wordsInNameList);
+            if (!Collections.disjoint(wordsInNameSet, keywords)) {
                 matchedPersons.add(person);
             }
         }
