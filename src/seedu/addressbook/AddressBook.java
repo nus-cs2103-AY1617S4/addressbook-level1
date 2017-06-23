@@ -1168,9 +1168,23 @@ public class AddressBook {
      * @param sign  Parameter sign to be removed
      * @return  string without the sign
      */
-    private static String removePrefixSign(String s, String sign) {
-        return s.replace(sign, "");
+    private static String removePrefixSign(String s, String prefix) {
+    	if ( prefix.equals(PERSON_DATA_PREFIX_PHONE) || prefix.equals(PERSON_DATA_PREFIX_EMAIL)) {
+    		return removePrefix(s, prefix);
+    	}
+    	else {
+    		return "";
+    	}
     }
+
+	private static String removePrefix(String fullString, String prefix) {
+		if ( !fullString.startsWith(prefix)  ) {
+			return fullString;
+		}
+		else {
+			return fullString.replace(prefix, "");
+		}
+	}
 
     /**
      * Splits a source string into the list of substrings that were separated by whitespace.
