@@ -55,7 +55,7 @@
 || 	Parameters: NAME p/PHONE_NUMBER e/EMAIL
 || 	Example: add John Doe p/98765432 e/johnd@gmail.com
 || 
-|| find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
+|| find: Finds all persons whose names contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
 || 	Parameters: KEYWORD [MORE_KEYWORDS]
 || 	Example: find alice bob charlie
 || 
@@ -64,6 +64,10 @@
 || 
 || sort: Displays all persons as a list with index numbers, sorted by name in lexicographically increasing order.
 || 	Example: sort
+|| 
+|| edit: Edits a persons name, phone number and/or email.
+|| 	Parameters: KEYWORD NAME p/PHONE_NUMBER e/EMAIL
+|| 	Example: edit John Jonathan p/98765432 e/johnd@gmail.com
 || 
 || delete: Deletes a person identified by the index number used in the last find/list/sort call.
 || 	Parameters: INDEX
@@ -197,8 +201,32 @@
 || 
 || 6 persons found!
 || ===================================================
+|| Enter command: || [Command entered:  edit boo Brendon p/300003 e/brenb@nus.edu.sg]
+|| Person edited from:
+|| 	Brendon Boo  Phone Number: 300000  Email: brendonb@nus.edu.sg
+|| to:
+|| 	Brendon  Phone Number: 300003  Email: brenb@nus.edu.sg
+|| ===================================================
+|| Enter command: || [Command entered:  edit brendon Brend]
+|| Person edited from:
+|| 	Brendon  Phone Number: 300003  Email: brenb@nus.edu.sg
+|| to:
+|| 	Brend  Phone Number: 300003  Email: brenb@nus.edu.sg
+|| ===================================================
+|| Enter command: || [Command entered:  edit brend p/300300]
+|| Person edited from:
+|| 	Brend  Phone Number: 300003  Email: brenb@nus.edu.sg
+|| to:
+|| 	Brend  Phone Number: 300300  Email: brenb@nus.edu.sg
+|| ===================================================
+|| Enter command: || [Command entered:  edit brend e/bb@nus.edu.sg]
+|| Person edited from:
+|| 	Brend  Phone Number: 300300  Email: brenb@nus.edu.sg
+|| to:
+|| 	Brend  Phone Number: 300300  Email: bb@nus.edu.sg
+|| ===================================================
 || Enter command: || [Command entered:  delete 3]
-|| Deleted Person: Brendon Boo  Phone Number: 300000  Email: brendonb@nus.edu.sg
+|| Deleted Person: Brend  Phone Number: 300300  Email: bb@nus.edu.sg
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com

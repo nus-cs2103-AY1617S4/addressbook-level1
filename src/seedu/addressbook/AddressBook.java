@@ -74,8 +74,13 @@ public class AddressBook {
     private static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
     private static final String MESSAGE_DISPLAY_PERSON_DATA = "%1$s  Phone Number: %2$s  Email: %3$s";
     private static final String MESSAGE_DISPLAY_LIST_ELEMENT_INDEX = "%1$d. ";
+    private static final String MESSAGE_EDITED = "Person edited from:"
+                                                + LS + "\t%1$s  Phone Number: %2$s  Email: %3$s"
+                                                + LS + "to:"
+                                                + LS + "\t%4$s  Phone Number: %5$s  Email: %6$s";
     private static final String MESSAGE_GOODBYE = "Exiting Address Book... Good bye!";
     private static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format: %1$s " + LS + "%2$s";
+    private static final String MESSAGE_INVALID_EDIT_PERSON_NOT_FOUND = "Invalid edit, person not found.";
     private static final String MESSAGE_INVALID_FILE = "The given file name [%1$s] is not a valid file name!";
     private static final String MESSAGE_INVALID_PROGRAM_ARGS = "Too many parameters! Correct program argument format:"
                                                             + LS + "\tjava AddressBook"
@@ -108,7 +113,7 @@ public class AddressBook {
 
     private static final String COMMAND_FIND_WORD = "find";
     private static final String COMMAND_FIND_DESC = "Finds all persons whose names contain any of the specified "
-                                        + "keywords (case-sensitive) and displays them as a list with index numbers.";
+                                        + "keywords (case-insensitive) and displays them as a list with index numbers.";
     private static final String COMMAND_FIND_PARAMETERS = "KEYWORD [MORE_KEYWORDS]";
     private static final String COMMAND_FIND_EXAMPLE = COMMAND_FIND_WORD + " alice bob charlie";
 
@@ -120,6 +125,14 @@ public class AddressBook {
     private static final String COMMAND_SORT_DESC = "Displays all persons as a list with index numbers, sorted "
                                                   + "by name in lexicographically increasing order.";
     private static final String COMMAND_SORT_EXAMPLE = COMMAND_SORT_WORD;
+
+    private static final String COMMAND_EDIT_WORD = "edit";
+    private static final String COMMAND_EDIT_DESC = "Edits a persons name, phone number and/or email.";
+    private static final String COMMAND_EDIT_PARAMETERS = "KEYWORD " 
+                                                        + "NAME "
+                                                        + PERSON_DATA_PREFIX_PHONE + "PHONE_NUMBER "
+                                                        + PERSON_DATA_PREFIX_EMAIL + "EMAIL";
+    private static final String COMMAND_EDIT_EXAMPLE = COMMAND_EDIT_WORD + " John Jonathan p/98765432 e/johnd@gmail.com";
 
     private static final String COMMAND_DELETE_WORD = "delete";
     private static final String COMMAND_DELETE_DESC = "Deletes a person identified by the index number used in "
@@ -155,6 +168,12 @@ public class AddressBook {
             name = _name;
             phone = _phone;
             email = _email;
+        }
+
+        public Person(Person person) {
+            name = new String(person.name);
+            phone = new String(person.phone);
+            email = new String (person.email);
         }
     };
 
@@ -385,6 +404,8 @@ public class AddressBook {
             return executeListAllPersonsInAddressBook();
         case COMMAND_SORT_WORD:
             return executeListAllPersonsInAddressBookSorted();
+        case COMMAND_EDIT_WORD:
+            return executeEditPerson(commandArgs);
         case COMMAND_DELETE_WORD:
             return executeDeletePerson(commandArgs);
         case COMMAND_CLEAR_WORD:
@@ -508,6 +529,54 @@ public class AddressBook {
     }
 
     /**
+     * Edits person identified by search keyword.
+     * If more than one person is found to match the keyword, 
+     * the first person added will be edited.
+     *
+     * @param commandArgs full command args string from the user
+     * @return feedback display message for the operation result
+     */
+    private static String executeEditPerson(String commandArgs) {
+        if (!isEditPersonArgsValid(commandArgs)) {
+            return getMessageForInvalidCommandInput(COMMAND_EDIT_WORD, getUsageInfoForEditCommand());
+        }
+        final ArrayList<String> argsList = splitByWhitespace(commandArgs);
+        final String keyword = argsList.get(0).toLowerCase();
+        argsList.remove(0);
+        for (Person person : getAllPersonsInAddressBook()) {
+        	final ArrayList<String> wordsInNameList = splitByWhitespace(getNameFromPerson(person).toLowerCase());
+            if (wordsInNameList.contains(keyword)) {
+                final Person oldPerson = new Person(person);
+                for (String string : argsList) {
+                    if (string.startsWith(PERSON_DATA_PREFIX_PHONE)) {
+                        person.phone = removePhonePrefix(string);
+                    } else if (string.startsWith(PERSON_DATA_PREFIX_EMAIL)) {
+                        person.email = removeEmailPrefix(string);
+                    } else {
+                        person.name = string;
+                    }
+                }
+                return getMessageForSuccessfulEditPerson(oldPerson, person);
+            }
+        }
+        return MESSAGE_INVALID_EDIT_PERSON_NOT_FOUND;
+    }
+
+    /**
+     * Constructs a feedback message for a successful edit person command execution.
+     *
+     * @see #executeEditPerson(String)
+     * @param previousPerson person that was changed by the edit operationi
+     * @param editedPerson person who was successfully edited
+     * @return successful edit person feedback message
+     */
+    private static String getMessageForSuccessfulEditPerson(Person previousPerson, Person editedPerson) {
+        return String.format(MESSAGE_EDITED,
+                getNameFromPerson(previousPerson), getPhoneFromPerson(previousPerson), getEmailFromPerson(previousPerson),
+                getNameFromPerson(editedPerson), getPhoneFromPerson(editedPerson), getEmailFromPerson(editedPerson));
+    }
+
+    /**
      * Deletes person identified using last displayed index.
      *
      * @param commandArgs full command args string from the user
@@ -524,6 +593,40 @@ public class AddressBook {
         final Person targetInModel = getPersonByLastVisibleIndex(targetVisibleIndex);
         return deletePersonFromAddressBook(targetInModel) ? getMessageForSuccessfulDelete(targetInModel) // success
                                                           : MESSAGE_PERSON_NOT_IN_ADDRESSBOOK; // not found
+    }
+
+    /**
+     * Checks validity of edit person argument string's format.
+     *
+     * @param rawArgs raw command args string for the edit person command
+     * @return whether the input args string is valid
+     */
+    private static boolean isEditPersonArgsValid(String rawArgs) {
+        final ArrayList<String> argsList = splitByWhitespace(rawArgs);
+        if (argsList.size() < 2 || argsList.size() > 4) { // Must provide keyword and 1-3 fields to change
+            return false;
+        }
+        argsList.remove(0);
+        boolean hasName = false;
+        boolean hasPhone = false;
+        boolean hasEmail = false;
+        for (String string : argsList) {
+            if (string.startsWith(PERSON_DATA_PREFIX_PHONE)) {
+                if (!isPersonPhoneValid(removePhonePrefix(string)) || hasPhone) {
+                    return false;
+                }
+                hasPhone = true;
+            } else if (string.startsWith(PERSON_DATA_PREFIX_EMAIL)) {
+                if (!isPersonEmailValid(removeEmailPrefix(string)) || hasEmail) {
+                    return false;
+                }
+                hasEmail = true;
+            } else if (!isPersonNameValid(string) || hasName) {
+                return false;
+            }
+            hasName = true;
+        }
+        return true;
     }
 
     /**
@@ -1108,6 +1211,7 @@ public class AddressBook {
                 + getUsageInfoForFindCommand() + LS
                 + getUsageInfoForListCommand() + LS
                 + getUsageInfoForSortCommand() + LS
+                + getUsageInfoForEditCommand() + LS
                 + getUsageInfoForDeleteCommand() + LS
                 + getUsageInfoForClearCommand() + LS
                 + getUsageInfoForExitCommand() + LS
@@ -1126,6 +1230,13 @@ public class AddressBook {
         return String.format(MESSAGE_COMMAND_HELP, COMMAND_FIND_WORD, COMMAND_FIND_DESC) + LS
                 + String.format(MESSAGE_COMMAND_HELP_PARAMETERS, COMMAND_FIND_PARAMETERS) + LS
                 + String.format(MESSAGE_COMMAND_HELP_EXAMPLE, COMMAND_FIND_EXAMPLE) + LS;
+    }
+
+    /** Returns the string for showing 'edit' command usage instruction */
+    private static String getUsageInfoForEditCommand() {
+        return String.format(MESSAGE_COMMAND_HELP, COMMAND_EDIT_WORD, COMMAND_EDIT_DESC) + LS
+                + String.format(MESSAGE_COMMAND_HELP_PARAMETERS, COMMAND_EDIT_PARAMETERS) + LS
+                + String.format(MESSAGE_COMMAND_HELP_EXAMPLE, COMMAND_EDIT_EXAMPLE) + LS;
     }
 
     /** Returns the string for showing 'delete' command usage instruction */

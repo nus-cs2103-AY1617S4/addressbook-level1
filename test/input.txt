@@ -46,6 +46,12 @@
   list
   sort
 
+  # test editing
+  edit boo Brendon p/300003 e/brenb@nus.edu.sg
+  edit brendon Brend
+  edit brend p/300300
+  edit brend e/bb@nus.edu.sg
+
   # remove extra person before carrying on
   delete 3
   list
