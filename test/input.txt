@@ -41,18 +41,26 @@
   add Esther Potato p/555555 e/esther@notreal.potato
   list
 
-  # test sorted order
+##########################################################
+# test sort by adding a person out of order
+##########################################################
+
   add Brendon Boo p/300000 e/brendonb@nus.edu.sg
+  # should list by added order
   list
+  # should list by alphabetical order
   sort
 
-  # test editing
+##########################################################
+# test editing of a persons info
+##########################################################
+
   edit boo Brendon p/300003 e/brenb@nus.edu.sg
   edit brendon Brend
   edit brend p/300300
   edit brend e/bb@nus.edu.sg
 
-  # remove extra person before carrying on
+  # cleanup of the extra person
   delete 3
   list
 
