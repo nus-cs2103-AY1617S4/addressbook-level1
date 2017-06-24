@@ -52,8 +52,8 @@
 || Enter command: || [Command entered:  sfdfd]
 || Invalid command format: sfdfd 
 || add: Adds a person to the address book.
-|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL
-|| 	Example: add John Doe p/98765432 e/johnd@gmail.com
+|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL b/DOB
+|| 	Example: add John Doe p/98765432 e/johnd@gmail.com b/10March1980
 || 
 || find: Finds all persons whose names contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
 || 	Parameters: KEYWORD [MORE_KEYWORDS]
@@ -66,8 +66,8 @@
 || 	Example: sort
 || 
 || edit: Edits a persons name, phone number and/or email.
-|| 	Parameters: KEYWORD NAME p/PHONE_NUMBER e/EMAIL
-|| 	Example: edit John Jonathan p/98765432 e/johnd@gmail.com
+|| 	Parameters: KEYWORD NAME p/PHONE_NUMBER e/EMAIL b/DOB
+|| 	Example: edit John Jonathan p/98765432 e/johnd@gmail.com b/20October2001
 || 
 || delete: Deletes a person identified by the index number used in the last find/list/sort call.
 || 	Parameters: INDEX
@@ -89,151 +89,167 @@
 || Enter command: || [Command entered:  add wrong args wrong args]
 || Invalid command format: add 
 || add: Adds a person to the address book.
-|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL
-|| 	Example: add John Doe p/98765432 e/johnd@gmail.com
+|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL b/DOB
+|| 	Example: add John Doe p/98765432 e/johnd@gmail.com b/10March1980
 || 
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 valid@email.butNoPrefix]
 || Invalid command format: add 
 || add: Adds a person to the address book.
-|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL
-|| 	Example: add John Doe p/98765432 e/johnd@gmail.com
+|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL b/DOB
+|| 	Example: add John Doe p/98765432 e/johnd@gmail.com b/10March1980
 || 
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name 12345 e/valid@email.butPhonePrefixMissing]
 || Invalid command format: add 
 || add: Adds a person to the address book.
-|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL
-|| 	Example: add John Doe p/98765432 e/johnd@gmail.com
+|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL b/DOB
+|| 	Example: add John Doe p/98765432 e/johnd@gmail.com b/10March1980
 || 
 || ===================================================
 || Enter command: || [Command entered:  add []\[;] p/12345 e/valid@e.mail]
 || Invalid command format: add 
 || add: Adds a person to the address book.
-|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL
-|| 	Example: add John Doe p/98765432 e/johnd@gmail.com
+|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL b/DOB
+|| 	Example: add John Doe p/98765432 e/johnd@gmail.com b/10March1980
 || 
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/not_numbers e/valid@e.mail]
 || Invalid command format: add 
 || add: Adds a person to the address book.
-|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL
-|| 	Example: add John Doe p/98765432 e/johnd@gmail.com
+|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL b/DOB
+|| 	Example: add John Doe p/98765432 e/johnd@gmail.com b/10March1980
 || 
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 e/notAnEmail]
 || Invalid command format: add 
 || add: Adds a person to the address book.
-|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL
-|| 	Example: add John Doe p/98765432 e/johnd@gmail.com
+|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL b/DOB
+|| 	Example: add John Doe p/98765432 e/johnd@gmail.com b/10March1980
 || 
 || ===================================================
-|| Enter command: || [Command entered:  add Adam Brown p/111111 e/adam@gmail.com]
-|| New person added: Adam Brown, Phone: 111111, Email: adam@gmail.com
+|| Enter command: || [Command entered:  add Adam Brown p/111111 e/adam@gmail.com b/24March1976]
+|| New person added: Adam Brown, Phone: 111111, Email: adam@gmail.com, DOB: 24March1976
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com
+|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com  DOB: 24March1976
 || 
 || 1 persons found!
 || ===================================================
-|| Enter command: || [Command entered:  add Betsy Choo p/222222 e/benchoo@nus.edu.sg]
-|| New person added: Betsy Choo, Phone: 222222, Email: benchoo@nus.edu.sg
+|| Enter command: || [Command entered:  add Betsy Choo p/222222 e/benchoo@nus.edu.sg b/18Dec1980]
+|| New person added: Betsy Choo, Phone: 222222, Email: benchoo@nus.edu.sg, DOB: 18Dec1980
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com
-|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
+|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com  DOB: 24March1976
+|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg  DOB: 18Dec1980
 || 
 || 2 persons found!
 || ===================================================
-|| Enter command: || [Command entered:  add Charlie Dickson e/charlie.d@nus.edu.sg p/333333]
-|| New person added: Charlie Dickson, Phone: 333333, Email: charlie.d@nus.edu.sg
+|| Enter command: || [Command entered:  add Charlie Dickson e/charlie.d@nus.edu.sg p/333333 b/5Jan1966]
+|| New person added: Charlie Dickson, Phone: 333333, Email: charlie.d@nus.edu.sg, DOB: 5Jan1966
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com
-|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
-|| 	3. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg
+|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com  DOB: 24March1976
+|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg  DOB: 18Dec1980
+|| 	3. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg  DOB: 5Jan1966
 || 
 || 3 persons found!
 || ===================================================
-|| Enter command: || [Command entered:  add Dickson Ee e/dickson@nus.edu.sg p/444444]
-|| New person added: Dickson Ee, Phone: 444444, Email: dickson@nus.edu.sg
+|| Enter command: || [Command entered:  add Dickson Ee e/dickson@nus.edu.sg p/444444 b/25September1995]
+|| New person added: Dickson Ee, Phone: 444444, Email: dickson@nus.edu.sg, DOB: 25September1995
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com
-|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
-|| 	3. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg
-|| 	4. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg
+|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com  DOB: 24March1976
+|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg  DOB: 18Dec1980
+|| 	3. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg  DOB: 5Jan1966
+|| 	4. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg  DOB: 25September1995
 || 
 || 4 persons found!
 || ===================================================
-|| Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@notreal.potato]
-|| New person added: Esther Potato, Phone: 555555, Email: esther@notreal.potato
+|| Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@notreal.potato b/29Feb2002]
+|| New person added: Esther Potato, Phone: 555555, Email: esther@notreal.potato, DOB: 29Feb2002
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com
-|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
-|| 	3. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg
-|| 	4. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg
-|| 	5. Esther Potato  Phone Number: 555555  Email: esther@notreal.potato
+|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com  DOB: 24March1976
+|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg  DOB: 18Dec1980
+|| 	3. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg  DOB: 5Jan1966
+|| 	4. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg  DOB: 25September1995
+|| 	5. Esther Potato  Phone Number: 555555  Email: esther@notreal.potato  DOB: 29Feb2002
 || 
 || 5 persons found!
 || ===================================================
-|| Enter command: || [Command entered:  add Brendon Boo p/300000 e/brendonb@nus.edu.sg]
-|| New person added: Brendon Boo, Phone: 300000, Email: brendonb@nus.edu.sg
+|| Enter command: || [Command entered:  add Brendon Boo p/300000 e/brendonb@nus.edu.sg b/6Jun1996]
+|| New person added: Brendon Boo, Phone: 300000, Email: brendonb@nus.edu.sg, DOB: 6Jun1996
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com
-|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
-|| 	3. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg
-|| 	4. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg
-|| 	5. Esther Potato  Phone Number: 555555  Email: esther@notreal.potato
-|| 	6. Brendon Boo  Phone Number: 300000  Email: brendonb@nus.edu.sg
+|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com  DOB: 24March1976
+|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg  DOB: 18Dec1980
+|| 	3. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg  DOB: 5Jan1966
+|| 	4. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg  DOB: 25September1995
+|| 	5. Esther Potato  Phone Number: 555555  Email: esther@notreal.potato  DOB: 29Feb2002
+|| 	6. Brendon Boo  Phone Number: 300000  Email: brendonb@nus.edu.sg  DOB: 6Jun1996
 || 
 || 6 persons found!
 || ===================================================
 || Enter command: || [Command entered:  sort]
-|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com
-|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
-|| 	3. Brendon Boo  Phone Number: 300000  Email: brendonb@nus.edu.sg
-|| 	4. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg
-|| 	5. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg
-|| 	6. Esther Potato  Phone Number: 555555  Email: esther@notreal.potato
+|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com  DOB: 24March1976
+|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg  DOB: 18Dec1980
+|| 	3. Brendon Boo  Phone Number: 300000  Email: brendonb@nus.edu.sg  DOB: 6Jun1996
+|| 	4. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg  DOB: 5Jan1966
+|| 	5. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg  DOB: 25September1995
+|| 	6. Esther Potato  Phone Number: 555555  Email: esther@notreal.potato  DOB: 29Feb2002
 || 
 || 6 persons found!
 || ===================================================
-|| Enter command: || [Command entered:  edit boo Brendon p/300003 e/brenb@nus.edu.sg]
+|| Enter command: || [Command entered:  edit boo Brendon p/300003 e/brenb@nus.edu.sg b/7Jun2006]
 || Person edited from:
-|| 	Brendon Boo  Phone Number: 300000  Email: brendonb@nus.edu.sg
+|| 	Brendon Boo  Phone Number: 300000  Email: brendonb@nus.edu.sg  DOB: 6Jun1996
 || to:
-|| 	Brendon  Phone Number: 300003  Email: brenb@nus.edu.sg
+|| 	Brendon  Phone Number: 300003  Email: brenb@nus.edu.sg  DOB: 7Jun2006
 || ===================================================
 || Enter command: || [Command entered:  edit brendon Brend]
 || Person edited from:
-|| 	Brendon  Phone Number: 300003  Email: brenb@nus.edu.sg
+|| 	Brendon  Phone Number: 300003  Email: brenb@nus.edu.sg  DOB: 7Jun2006
 || to:
-|| 	Brend  Phone Number: 300003  Email: brenb@nus.edu.sg
+|| 	Brend  Phone Number: 300003  Email: brenb@nus.edu.sg  DOB: 7Jun2006
 || ===================================================
 || Enter command: || [Command entered:  edit brend p/300300]
 || Person edited from:
-|| 	Brend  Phone Number: 300003  Email: brenb@nus.edu.sg
+|| 	Brend  Phone Number: 300003  Email: brenb@nus.edu.sg  DOB: 7Jun2006
 || to:
-|| 	Brend  Phone Number: 300300  Email: brenb@nus.edu.sg
+|| 	Brend  Phone Number: 300300  Email: brenb@nus.edu.sg  DOB: 7Jun2006
 || ===================================================
 || Enter command: || [Command entered:  edit brend e/bb@nus.edu.sg]
 || Person edited from:
-|| 	Brend  Phone Number: 300300  Email: brenb@nus.edu.sg
+|| 	Brend  Phone Number: 300300  Email: brenb@nus.edu.sg  DOB: 7Jun2006
 || to:
-|| 	Brend  Phone Number: 300300  Email: bb@nus.edu.sg
+|| 	Brend  Phone Number: 300300  Email: bb@nus.edu.sg  DOB: 7Jun2006
+|| ===================================================
+|| Enter command: || [Command entered:  edit Brend b/8June1996]
+|| Person edited from:
+|| 	Brend  Phone Number: 300300  Email: bb@nus.edu.sg  DOB: 7Jun2006
+|| to:
+|| 	Brend  Phone Number: 300300  Email: bb@nus.edu.sg  DOB: 8June1996
+|| ===================================================
+|| Enter command: || [Command entered:  sort]
+|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com  DOB: 24March1976
+|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg  DOB: 18Dec1980
+|| 	3. Brend  Phone Number: 300300  Email: bb@nus.edu.sg  DOB: 8June1996
+|| 	4. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg  DOB: 5Jan1966
+|| 	5. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg  DOB: 25September1995
+|| 	6. Esther Potato  Phone Number: 555555  Email: esther@notreal.potato  DOB: 29Feb2002
+|| 
+|| 6 persons found!
 || ===================================================
 || Enter command: || [Command entered:  delete 3]
-|| Deleted Person: Brend  Phone Number: 300300  Email: bb@nus.edu.sg
+|| Deleted Person: Brend  Phone Number: 300300  Email: bb@nus.edu.sg  DOB: 8June1996
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com
-|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
-|| 	3. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg
-|| 	4. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg
-|| 	5. Esther Potato  Phone Number: 555555  Email: esther@notreal.potato
+|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com  DOB: 24March1976
+|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg  DOB: 18Dec1980
+|| 	3. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg  DOB: 5Jan1966
+|| 	4. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg  DOB: 25September1995
+|| 	5. Esther Potato  Phone Number: 555555  Email: esther@notreal.potato  DOB: 29Feb2002
 || 
 || 5 persons found!
 || ===================================================
@@ -250,24 +266,24 @@
 || 0 persons found!
 || ===================================================
 || Enter command: || [Command entered:  find betsy]
-|| 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
+|| 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg  DOB: 18Dec1980
 || 
 || 1 persons found!
 || ===================================================
 || Enter command: || [Command entered:  find Betsy]
-|| 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
+|| 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg  DOB: 18Dec1980
 || 
 || 1 persons found!
 || ===================================================
 || Enter command: || [Command entered:  find Dickson]
-|| 	1. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg
-|| 	2. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg
+|| 	1. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg  DOB: 5Jan1966
+|| 	2. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg  DOB: 25September1995
 || 
 || 2 persons found!
 || ===================================================
 || Enter command: || [Command entered:  find Charlie Betsy]
-|| 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
-|| 	2. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg
+|| 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg  DOB: 18Dec1980
+|| 	2. Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg  DOB: 5Jan1966
 || 
 || 2 persons found!
 || ===================================================
@@ -303,35 +319,35 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
-|| Deleted Person: Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg
+|| Deleted Person: Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg  DOB: 5Jan1966
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
 || Person could not be found in address book
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com
-|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
-|| 	3. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg
-|| 	4. Esther Potato  Phone Number: 555555  Email: esther@notreal.potato
+|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com  DOB: 24March1976
+|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg  DOB: 18Dec1980
+|| 	3. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg  DOB: 25September1995
+|| 	4. Esther Potato  Phone Number: 555555  Email: esther@notreal.potato  DOB: 29Feb2002
 || 
 || 4 persons found!
 || ===================================================
 || Enter command: || [Command entered:  delete 4]
-|| Deleted Person: Esther Potato  Phone Number: 555555  Email: esther@notreal.potato
+|| Deleted Person: Esther Potato  Phone Number: 555555  Email: esther@notreal.potato  DOB: 29Feb2002
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com
-|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
-|| 	3. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg
+|| 	1. Adam Brown  Phone Number: 111111  Email: adam@gmail.com  DOB: 24March1976
+|| 	2. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg  DOB: 18Dec1980
+|| 	3. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg  DOB: 25September1995
 || 
 || 3 persons found!
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
-|| Deleted Person: Adam Brown  Phone Number: 111111  Email: adam@gmail.com
+|| Deleted Person: Adam Brown  Phone Number: 111111  Email: adam@gmail.com  DOB: 24March1976
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
-|| 	2. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg
+|| 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg  DOB: 18Dec1980
+|| 	2. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg  DOB: 25September1995
 || 
 || 2 persons found!
 || ===================================================
