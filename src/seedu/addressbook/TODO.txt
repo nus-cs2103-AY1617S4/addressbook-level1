@@ -1,0 +1,6 @@
+Missing features:
+
+edit command cannot change name to anything more than 1 word
+edit command validity check cannot handle DOB with whitespace
+
+logic to validate DOB input
