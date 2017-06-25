@@ -1001,14 +1001,11 @@ public class AddressBook {
 
         // phone is last arg, target is from prefix to end of string
         if (indexOfPhonePrefix > indexOfEmailPrefix) {
-            return removePrefix(encoded.substring(indexOfPhonePrefix, encoded.length()).trim(),
-                    PERSON_DATA_PREFIX_PHONE);
+            return removePrefixPhone(encoded.substring(indexOfPhonePrefix, encoded.length()));
 
         // phone is middle arg, target is from own prefix to next prefix
         } else {
-            return removePrefix(
-                    encoded.substring(indexOfPhonePrefix, indexOfEmailPrefix).trim(),
-                    PERSON_DATA_PREFIX_PHONE);
+        	return removePrefixPhone(encoded.substring(indexOfPhonePrefix, indexOfEmailPrefix).trim());
         }
     }
 
@@ -1024,14 +1021,13 @@ public class AddressBook {
 
         // email is last arg, target is from prefix to end of string
         if (indexOfEmailPrefix > indexOfPhonePrefix) {
-            return removePrefix(encoded.substring(indexOfEmailPrefix, encoded.length()).trim(),
-                    PERSON_DATA_PREFIX_EMAIL);
+        	return removePrefixEmail(encoded.substring(indexOfEmailPrefix, encoded.length()).trim());
+            
 
         // email is middle arg, target is from own prefix to next prefix
         } else {
-            return removePrefix(
-                    encoded.substring(indexOfEmailPrefix, indexOfPhonePrefix).trim(),
-                    PERSON_DATA_PREFIX_EMAIL);
+        	return removePrefixEmail(encoded.substring(indexOfEmailPrefix, indexOfPhonePrefix).trim());
+            
         }
     }
 
@@ -1158,13 +1154,33 @@ public class AddressBook {
     /**
      * Removes sign(p/, d/, etc) from parameter string
      *
-     * @param s  Parameter as a string
-     * @param sign  Parameter sign to be removed
-     * @return  string without the sign
+     * @param fullString  Parameter as a string
+     * @param prefix  Parameter prefix to be removed
+     * @return  string without the prefix
      */
     private static String removePrefix(String fullString, String prefix) {
         return fullString.replace(prefix, "");
     }
+    
+   /**
+    * Removes the Phone prefix from parameter string
+    * @param fullPhoneString Parameter as a string
+    * @return string without the email prefix
+    * */
+    private static String removePrefixPhone(String fullPhoneString){
+    	String noPrefixEmailString = removePrefix(fullPhoneString, PERSON_DATA_PREFIX_PHONE);
+    	return noPrefixEmailString;
+    }
+    
+    /**
+     * Removes the Email prefix from parameter string
+     * @param fullEmailString Parameter as a string
+     * @return string without the email prefix
+     * */
+     private static String removePrefixEmail(String fullEmailString){
+     	String noPrefixEmailString = removePrefix(fullEmailString, PERSON_DATA_PREFIX_EMAIL);
+     	return noPrefixEmailString;
+     }
 
     /**
      * Splits a source string into the list of substrings that were separated by whitespace.
