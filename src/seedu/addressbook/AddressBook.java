@@ -142,9 +142,9 @@ public class AddressBook {
      * The constants given below are for the key for the different data key of a person
      * For example a person's name is stored as the key "name"
      */
-    private static final String PERSON_PROPERTY_NAME = "name";
-    private static final String PERSON_PROPERTY_EMAIL = "email";
-    private static final String PERSON_PROPERTY_PHONE = "phone";
+//    private static final String PERSON_PROPERTY_NAME = "name";
+//    private static final String PERSON_PROPERTY_EMAIL = "email";
+//    private static final String PERSON_PROPERTY_PHONE = "phone";
     
 	/**
 	 * We use an enum to store details of a single person
@@ -155,7 +155,7 @@ public class AddressBook {
     /**
      * The number of data elements for a single person.
      */
-    private static final int PERSON_DATA_COUNT = 3;
+//    private static final int PERSON_DATA_COUNT = 3;
 
     /**
      * Offset required to convert between 1-indexing and 0-indexing.COMMAND_
