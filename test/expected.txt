@@ -49,6 +49,29 @@
 || Welcome to your Address Book!
 || ===================================================
 || Using default storage file : addressbook.txt
+|| Enter command: || [Command entered:  abcd]
+|| Invalid command format: abcd 
+|| add: Adds a person to the address book.
+|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL
+|| 	Example: add John Doe p/98765432 e/johnd@gmail.com
+|| 
+|| find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
+|| 	Parameters: KEYWORD [MORE_KEYWORDS]
+|| 	Example: find alice bob charlie
+|| 
+|| list: Displays all persons as a list with index numbers.
+|| 	Example: list
+|| 
+|| delete: Deletes a person identified by the index number used in the last find/list call.
+|| 	Parameters: INDEX
+|| 	Example: delete 1
+|| 
+|| clear: Clears address book permanently.
+|| 	Example: clear
+|| 
+|| exit: Exits the program.	Example: exit
+|| help: Shows program usage instructions.	Example: help
+|| ===================================================
 || Enter command: || [Command entered:  sfdfd]
 || Invalid command format: sfdfd 
 || add: Adds a person to the address book.
@@ -86,6 +109,13 @@
 || 	Example: add John Doe p/98765432 e/johnd@gmail.com
 || 
 || ===================================================
+|| Enter command: || [Command entered:  add InValidName123 p/12345 valid@email.butNoPrefix]
+|| Invalid command format: add 
+|| add: Adds a person to the address book.
+|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL
+|| 	Example: add John Doe p/98765432 e/johnd@gmail.com
+|| 
+|| ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 valid@email.butNoPrefix]
 || Invalid command format: add 
 || add: Adds a person to the address book.
@@ -115,6 +145,13 @@
 || 
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 e/notAnEmail]
+|| Invalid command format: add 
+|| add: Adds a person to the address book.
+|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL
+|| 	Example: add John Doe p/98765432 e/johnd@gmail.com
+|| 
+|| ===================================================
+|| Enter command: || [Command entered:  add InValidName123 p/12345 valid@email.butNoPrefix]
 || Invalid command format: add 
 || add: Adds a person to the address book.
 || 	Parameters: NAME p/PHONE_NUMBER e/EMAIL
@@ -179,13 +216,18 @@
 || 
 || 0 persons found!
 || ===================================================
+|| Enter command: || [Command entered:  find hello]
+|| 
+|| 0 persons found!
+|| ===================================================
 || Enter command: || [Command entered:  find 23912039120]
 || 
 || 0 persons found!
 || ===================================================
 || Enter command: || [Command entered:  find betsy]
+|| 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
 || 
-|| 0 persons found!
+|| 1 persons found!
 || ===================================================
 || Enter command: || [Command entered:  find Betsy]
 || 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
@@ -233,6 +275,9 @@
 || 
 || ===================================================
 || Enter command: || [Command entered:  delete 3]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command: || [Command entered:  delete 12]
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
