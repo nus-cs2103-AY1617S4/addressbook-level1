@@ -205,18 +205,22 @@ public class AddressBook {
      * referenced by the high-level method below.
      * ====================================================================
      */
-
+    
     public static void main(String[] args) {
         showWelcomeMessage();
         processProgramArgs(args);
         loadDataFromStorage();
-        while (true) {
+        userInputsAndExecutions();
+    }
+
+	public static void userInputsAndExecutions() {
+		while (true) {
             String userCommand = getUserInput();
             echoUserCommand(userCommand);
             String feedback = executeCommand(userCommand);
             showResultToUser(feedback);
         }
-    }
+	}
 
     /*
      * NOTE : =============================================================
