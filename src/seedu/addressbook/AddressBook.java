@@ -215,7 +215,40 @@ public class AddressBook {
 
     public static void main(String[] args) {
         showWelcomeMessage();
-        processProgramArgs(args);
+        if (args.length >= 2) {
+		    String[] message = { MESSAGE_INVALID_PROGRAM_ARGS };
+			for (String m : message) {
+			    System.out.println(LINE_PREFIX + m);
+			}
+			String[] message1 = { MESSAGE_GOODBYE, DIVIDER, DIVIDER };
+		    for (String m1 : message1) {
+			    System.out.println(LINE_PREFIX + m1);
+			}
+			System.exit(0);
+		}
+		
+		if (args.length == 1) {
+		    String filePath = args[0];
+			if (!isValidFilePath(filePath)) {
+			    String[] message = { String.format(MESSAGE_INVALID_FILE, filePath) };
+				for (String m : message) {
+				    System.out.println(LINE_PREFIX + m);
+				}
+			    exitProgram();
+			}
+			
+			storageFilePath = filePath;
+			createFileIfMissing(filePath);
+		}
+		
+		if(args.length == 0) {
+		    String[] message = { MESSAGE_USING_DEFAULT_FILE };
+			for (String m : message) {
+			    System.out.println(LINE_PREFIX + m);
+			}
+			storageFilePath = DEFAULT_STORAGE_FILEPATH;
+			createFileIfMissing(storageFilePath);
+		}
         loadDataFromStorage();
 
         runProgram();
