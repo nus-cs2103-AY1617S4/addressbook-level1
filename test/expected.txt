@@ -130,13 +130,6 @@
 || 	Example: add John Doe p/98765432 e/johnd@gmail.com
 || 
 || ===================================================
-|| Enter command: || [Command entered:  add InValidName123 p/12345 valid@email.butNoPrefix]
-|| Invalid command format: add 
-|| add: Adds a person to the address book.
-|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL
-|| 	Example: add John Doe p/98765432 e/johnd@gmail.com
-|| 
-|| ===================================================
 || Enter command: || [Command entered:  add []\[;] p/12345 e/valid@e.mail]
 || Invalid command format: add 
 || add: Adds a person to the address book.
@@ -152,6 +145,13 @@
 || 
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 e/notAnEmail]
+|| Invalid command format: add 
+|| add: Adds a person to the address book.
+|| 	Parameters: NAME p/PHONE_NUMBER e/EMAIL
+|| 	Example: add John Doe p/98765432 e/johnd@gmail.com
+|| 
+|| ===================================================
+|| Enter command: || [Command entered:  add InValidName123 p/12345 valid@email.butNoPrefix]
 || Invalid command format: add 
 || add: Adds a person to the address book.
 || 	Parameters: NAME p/PHONE_NUMBER e/EMAIL

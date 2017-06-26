@@ -26,12 +26,12 @@
   add Valid Name 12345 e/valid@email.butPhonePrefixMissing
   
   # should catch invalid person data
-  add InValidName123 p/12345 valid@email.butNoPrefix
   add []\[;] p/12345 e/valid@e.mail
   add Valid Name p/not_numbers e/valid@e.mail
   add Valid Name p/12345 e/notAnEmail
 
   # should add correctly
+  add InValidName123 p/12345 valid@email.butNoPrefix
   add Adam Brown p/111111 e/adam@gmail.com
   list
   add Betsy Choo p/222222 e/benchoo@nus.edu.sg
