@@ -20,6 +20,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
@@ -497,15 +499,23 @@ public class AddressBook {
      * @return list of persons in full model with name containing some of the keywords
      */
     private static ArrayList<HashMap<PersonProperty,String>> getPersonsWithNameContainingAnyKeyword(Collection<String> keywords) {
+        Collection<String> tempKeywords = new ArrayList<String>();
+        for(String keyword : keywords){
+        	tempKeywords.add(keyword.toUpperCase());
+        }
         final ArrayList<HashMap<PersonProperty,String>> matchedPersons = new ArrayList<>();
         for (HashMap<PersonProperty,String> person : getAllPersonsInAddressBook()) {
-            final Set<String> wordsInName = new HashSet<>(splitByWhitespace(getNameFromPerson(person)));
-            if (!Collections.disjoint(wordsInName, keywords)) {
+        	ArrayList<String> wordsInName = splitByWhitespace(getNameFromPerson(person));
+        	wordsInName.replaceAll(String::toUpperCase);
+        	final Set<String> wordsInNameSet = new HashSet<>(wordsInName);
+            // False if wordsInName and keywords have no elements in common
+            if (!Collections.disjoint(wordsInNameSet, tempKeywords)) {
                 matchedPersons.add(person);
             }
         }
         return matchedPersons;
     }
+    
 
     /**
      * Deletes person identified using last displayed index.
