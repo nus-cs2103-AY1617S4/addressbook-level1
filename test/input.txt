@@ -1,6 +1,8 @@
 ##########################################################
 # invalid command
 ##########################################################
+  # should recognise invalid command (Additional Test Case Added)
+  abcd
 
   # should recognise invalid command
   sfdfd
@@ -14,11 +16,12 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for future tests
 ##########################################################
 
   # should catch invalid args format
   add wrong args wrong args
+  add InValidName123 p/12345 valid@email.butNoPrefix
   add Valid Name p/12345 valid@email.butNoPrefix
   add Valid Name 12345 e/valid@email.butPhonePrefixMissing
   
