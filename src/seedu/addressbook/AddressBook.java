@@ -377,6 +377,10 @@ public class AddressBook {
 		final String[] commandTypeAndParams = splitCommandWordAndArgs(userInputString);
 		final String commandType = commandTypeAndParams[0];
 		final String commandArgs = commandTypeAndParams[1];
+		return switchCaseForCommand(commandType, commandArgs);
+	}
+
+	private static String switchCaseForCommand(final String commandType, final String commandArgs) {
 		switch (commandType) {
 		case COMMAND_ADD_WORD:
 			return executeAddPerson(commandArgs);
