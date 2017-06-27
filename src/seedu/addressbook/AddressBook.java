@@ -555,11 +555,7 @@ public class AddressBook {
 	 */
 	private static boolean isDeletePersonArgsValid(String rawArgs) {
 		try {
-			final int extractedIndex = Integer.parseInt(rawArgs.trim()); // use
-																			// standard
-																			// libraries
-																			// to
-																			// parse
+			final int extractedIndex = Integer.parseInt(rawArgs.trim()); // use standard libraries to parse
 			return extractedIndex >= DISPLAYED_INDEX_OFFSET;
 		} catch (NumberFormatException nfe) {
 			return false;
@@ -987,8 +983,8 @@ public class AddressBook {
 		if (!isPersonDataExtractableFrom(encoded)) {
 			return Optional.empty();
 		}
-		final String[] decodedPerson = makePersonFromData(extractNameFromPersonString(encoded),
-				extractPhoneFromPersonString(encoded), extractEmailFromPersonString(encoded));
+		final String[] decodedPerson = makePersonFromData(extractName(encoded),
+				extractPhone(encoded), extractEmail(encoded));
 		// check that the constructed person is valid
 		return isPersonDataValid(decodedPerson) ? Optional.of(decodedPerson) : Optional.empty();
 	}
@@ -1037,7 +1033,7 @@ public class AddressBook {
 	 *            person string representation
 	 * @return name argument
 	 */
-	private static String extractNameFromPersonString(String encoded) {
+	private static String extractName(String encoded) {
 		final int indexOfPhonePrefix = encoded.indexOf(PERSON_DATA_PREFIX_PHONE);
 		final int indexOfEmailPrefix = encoded.indexOf(PERSON_DATA_PREFIX_EMAIL);
 		// name is leading substring up to first data prefix symbol
@@ -1053,7 +1049,7 @@ public class AddressBook {
 	 *            person string representation
 	 * @return phone number argument WITHOUT prefix
 	 */
-	private static String extractPhoneFromPersonString(String encoded) {
+	private static String extractPhone(String encoded) {
 		final int indexOfPhonePrefix = encoded.indexOf(PERSON_DATA_PREFIX_PHONE);
 		final int indexOfEmailPrefix = encoded.indexOf(PERSON_DATA_PREFIX_EMAIL);
 
@@ -1076,7 +1072,7 @@ public class AddressBook {
 	 *            person string representation
 	 * @return email argument WITHOUT prefix
 	 */
-	private static String extractEmailFromPersonString(String encoded) {
+	private static String extractEmail(String encoded) {
 		final int indexOfPhonePrefix = encoded.indexOf(PERSON_DATA_PREFIX_PHONE);
 		final int indexOfEmailPrefix = encoded.indexOf(PERSON_DATA_PREFIX_EMAIL);
 
@@ -1099,8 +1095,8 @@ public class AddressBook {
 	 *            String array representing the person (used in internal data)
 	 */
 	private static boolean isPersonDataValid(String[] person) {
-		return isPersonNameValid(person[PERSON_DATA_INDEX_NAME]) && isPersonPhoneValid(person[PERSON_DATA_INDEX_PHONE])
-				&& isPersonEmailValid(person[PERSON_DATA_INDEX_EMAIL]);
+		return isNameValid(person[PERSON_DATA_INDEX_NAME]) && isPhoneValid(person[PERSON_DATA_INDEX_PHONE])
+				&& isEmailValid(person[PERSON_DATA_INDEX_EMAIL]);
 	}
 
 	/*
@@ -1116,7 +1112,7 @@ public class AddressBook {
 	 * @param name
 	 *            to be validated
 	 */
-	private static boolean isPersonNameValid(String name) {
+	private static boolean isNameValid(String name) {
 		return name.matches("(\\w|\\s)+"); // name is nonempty mixture of
 											// alphabets and whitespace
 		// TODO: implement a more permissive validation
@@ -1128,7 +1124,7 @@ public class AddressBook {
 	 * @param phone
 	 *            to be validated
 	 */
-	private static boolean isPersonPhoneValid(String phone) {
+	private static boolean isPhoneValid(String phone) {
 		return phone.matches("\\d+"); // phone nonempty sequence of digits
 		// TODO: implement a more permissive validation
 	}
@@ -1140,7 +1136,7 @@ public class AddressBook {
 	 *            to be validated
 	 * @return whether arg is a valid person email
 	 */
-	private static boolean isPersonEmailValid(String email) {
+	private static boolean isEmailValid(String email) {
 		return email.matches("\\S+@\\S+\\.\\S+"); // email is
 													// [non-whitespace]@[non-whitespace].[non-whitespace]
 		// TODO: implement a more permissive validation
