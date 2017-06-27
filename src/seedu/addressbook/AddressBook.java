@@ -332,7 +332,7 @@ public class AddressBook {
 		} catch (InvalidPathException ipe) {
 			return false;
 		}
-		return hasValidParentDirectory(filePathToValidate) && hasValidFileName(filePathToValidate);
+		return (hasValidParentDirectory(filePathToValidate) && hasValidFileName(filePathToValidate));
 	}
 
 	/**
@@ -405,7 +405,8 @@ public class AddressBook {
 	 */
 	private static String[] splitCommandWordAndArgs(String rawUserInput) {
 		final String[] split = rawUserInput.trim().split("\\s+", 2);
-		return split.length == 2 ? split : new String[] { split[0], "" }; // else
+		String[] tempResult = split.length == 2 ? split : new String[] { split[0], "" };
+		return tempResult; // else
 																			// case:
 																			// no
 																			// parameters
