@@ -513,13 +513,17 @@ public class AddressBook {
 	 */
 	private static ArrayList<String[]> getPersonsWithNameContainingAnyKeyword(Collection<String> keywords) {
 		final ArrayList<String[]> matchedPersons = new ArrayList<>();
+		getAllPersons(keywords, matchedPersons);
+		return matchedPersons;
+	}
+
+	private static void getAllPersons(Collection<String> keywords, final ArrayList<String[]> matchedPersons) {
 		for (String[] person : getAllPersonsInAddressBook()) {
 			final Set<String> wordsInName = new HashSet<>(splitByWhitespace(getNameFromPerson(person)));
 			if (!Collections.disjoint(wordsInName, keywords)) {
 				matchedPersons.add(person);
 			}
 		}
-		return matchedPersons;
 	}
 
 	/**
