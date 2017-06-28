@@ -440,12 +440,12 @@ public class AddressBook {
      * Constructs a feedback message for a successful add person command execution.
      *
      * @see #executeAddPerson(String)
-     * @param addedPerson person who was successfully added
+     * @param personToAdd person who was successfully added
      * @return successful add person feedback message
      */
-    private static String getMessageForSuccessfulAddPerson(HashMap<PersonProperty, String> addedPerson) {
+    private static String getMessageForSuccessfulAddPerson(HashMap<PersonProperty, String> personToAdd) {
         return String.format(MESSAGE_ADDED,
-                getNameFromPerson(addedPerson), getPhoneFromPerson(addedPerson), getEmailFromPerson(addedPerson));
+                getNameFromPerson(personToAdd), getPhoneFromPerson(personToAdd), getEmailFromPerson(personToAdd));
     }
 
     /**
@@ -465,11 +465,11 @@ public class AddressBook {
     /**
      * Constructs a feedback message to summarise an operation that displayed a listing of persons.
      *
-     * @param personsDisplayed used to generate summary
+     * @param personsToDisplay used to generate summary
      * @return summary message for persons displayed
      */
-    private static String getMessageForPersonsDisplayedSummary(ArrayList<HashMap<PersonProperty, String>> personsDisplayed) {
-        return String.format(MESSAGE_PERSONS_FOUND_OVERVIEW, personsDisplayed.size());
+    private static String getMessageForPersonsDisplayedSummary(ArrayList<HashMap<PersonProperty, String>> personsToDisplay) {
+        return String.format(MESSAGE_PERSONS_FOUND_OVERVIEW, personsToDisplay.size());
     }
 
     /**
@@ -557,11 +557,11 @@ public class AddressBook {
      * Constructs a feedback message for a successful delete person command execution.
      *
      * @see #executeDeletePerson(String)
-     * @param deletedPerson successfully deleted
+     * @param personToDelete successfully deleted
      * @return successful delete person feedback message
      */
-    private static String getMessageForSuccessfulDelete(HashMap<PersonProperty, String> deletedPerson) {
-        return String.format(MESSAGE_DELETE_PERSON_SUCCESS, getMessageForFormattedPersonData(deletedPerson));
+    private static String getMessageForSuccessfulDelete(HashMap<PersonProperty, String> personToDelete) {
+        return String.format(MESSAGE_DELETE_PERSON_SUCCESS, getMessageForFormattedPersonData(personToDelete));
     }
 
     /**
