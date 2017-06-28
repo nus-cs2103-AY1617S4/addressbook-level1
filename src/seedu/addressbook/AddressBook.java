@@ -261,18 +261,30 @@ public class AddressBook {
      * @param args full program arguments passed to application main method
      */
     private static void processProgramArgs(String[] args) {
-        if (args.length >= 2) {
+        if (isInvalidArgs(args)) {
             showToUser(MESSAGE_INVALID_PROGRAM_ARGS);
             exitProgram();
         }
 
-        if (args.length == 1) {
+        if (hasAlternativePath(args)) {
             setupGivenFileForStorage(args[0]);
         }
 
-        if(args.length == 0) {
+        if(isDefaultPath(args)) {
             setupDefaultFileForStorage();
         }
+    }
+    
+    private static boolean isInvalidArgs(String[] args){
+    	return args.length >= 2;
+    }
+    
+    private static boolean hasAlternativePath(String[] args){
+    	return args.length == 1;
+    }
+    
+    private static boolean isDefaultPath(String[] args){
+    	return args.length == 0;
     }
 
     /**
