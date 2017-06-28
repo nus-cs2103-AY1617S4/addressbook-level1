@@ -145,6 +145,14 @@ public class AddressBook {
     private static final int PERSON_DATA_INDEX_PHONE = 1;
     private static final int PERSON_DATA_INDEX_EMAIL = 2;
 
+    /*
+     * Program arguments
+     * */
+    private static final int INVALID_PROGRAM_ARGS = 2;
+    private static final int GIVEN_FILE_STORAGE_PROGRAM_ARGS = 1;
+    private static final int DEFAULT_FILE_STORAGE_PROGRAM_ARGS = 0;
+        
+    
     /**
      * The number of data elements for a single person.
      */
@@ -261,16 +269,16 @@ public class AddressBook {
      * @param args full program arguments passed to application main method
      */
     private static void processProgramArgs(String[] args) {
-        if (args.length >= 2) {
+        if (args.length >= INVALID_PROGRAM_ARGS) {
             showToUser(MESSAGE_INVALID_PROGRAM_ARGS);
             exitProgram();
         }
 
-        if (args.length == 1) {
+        if (args.length == GIVEN_FILE_STORAGE_PROGRAM_ARGS) {
             setupGivenFileForStorage(args[0]);
         }
 
-        if(args.length == 0) {
+        if(args.length == DEFAULT_FILE_STORAGE_PROGRAM_ARGS) {
             setupDefaultFileForStorage();
         }
     }
