@@ -171,6 +171,17 @@
 || 
 || 5 persons found!
 || ===================================================
+|| Enter command: || [Command entered:  add Joel Ang p/92703971 e/anglangyi1994@hotmail.com]
+|| New person added: Joel Ang, Phone: 92703971, Email: anglangyi1994@hotmail.com
+|| ===================================================
+|| Enter command: || [Command entered:  find Joel]
+|| 	1. Joel Ang  Phone Number: 92703971  Email: anglangyi1994@hotmail.com
+|| 
+|| 1 persons found!
+|| ===================================================
+|| Enter command: || [Command entered:  delete 1]
+|| Deleted Person: Joel Ang  Phone Number: 92703971  Email: anglangyi1994@hotmail.com
+|| ===================================================
 || Enter command: || [Command entered:  find]
 || 
 || 0 persons found!
@@ -184,8 +195,9 @@
 || 0 persons found!
 || ===================================================
 || Enter command: || [Command entered:  find betsy]
+|| 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
 || 
-|| 0 persons found!
+|| 1 persons found!
 || ===================================================
 || Enter command: || [Command entered:  find Betsy]
 || 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
