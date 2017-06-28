@@ -1001,15 +1001,22 @@ public class AddressBook {
 
         // phone is last arg, target is from prefix to end of string
         if (indexOfPhonePrefix > indexOfEmailPrefix) {
-            return removePrefixSign(encoded.substring(indexOfPhonePrefix, encoded.length()).trim(),
-                    PERSON_DATA_PREFIX_PHONE);
+            return removePrefixPhone(encoded.substring(indexOfPhonePrefix, encoded.length())); 
 
         // phone is middle arg, target is from own prefix to next prefix
         } else {
-            return removePrefixSign(
-                    encoded.substring(indexOfPhonePrefix, indexOfEmailPrefix).trim(),
-                    PERSON_DATA_PREFIX_PHONE);
+            return removePrefixPhone(encoded.substring(indexOfPhonePrefix, indexOfEmailPrefix).trim());
         }
+    }
+    
+    /**
+     * Removes the phone prefix from parameter string
+     * @param fullPhoneString Parameter as a string
+     * @return string without the phone prefix
+     * */
+    private static String removePrefixPhone(String fullPhoneString){
+        String noPrefixPhoneString = removePrefixSign(fullPhoneString, PERSON_DATA_PREFIX_PHONE);
+        return noPrefixPhoneString;
     }
 
     /**
@@ -1024,16 +1031,23 @@ public class AddressBook {
 
         // email is last arg, target is from prefix to end of string
         if (indexOfEmailPrefix > indexOfPhonePrefix) {
-            return removePrefixSign(encoded.substring(indexOfEmailPrefix, encoded.length()).trim(),
-                    PERSON_DATA_PREFIX_EMAIL);
+            return removePrefixEmail(encoded.substring(indexOfEmailPrefix, encoded.length()).trim());
 
         // email is middle arg, target is from own prefix to next prefix
         } else {
-            return removePrefixSign(
-                    encoded.substring(indexOfEmailPrefix, indexOfPhonePrefix).trim(),
-                    PERSON_DATA_PREFIX_EMAIL);
+            return removePrefixEmail(encoded.substring(indexOfEmailPrefix, indexOfPhonePrefix).trim());
         }
     }
+    
+    /**
+     * Removes the Email prefix from parameter string
+     * @param fullEmailString Parameter as a string
+     * @return string without the email prefix
+     * */
+     private static String removePrefixEmail(String fullEmailString){
+        String noPrefixEmailString = removePrefixSign(fullEmailString, PERSON_DATA_PREFIX_EMAIL);
+        return noPrefixEmailString;
+     }
 
     /**
      * Returns true if the given person's data fields are valid
