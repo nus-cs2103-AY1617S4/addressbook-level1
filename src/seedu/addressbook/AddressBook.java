@@ -212,7 +212,8 @@ public class AddressBook {
         loadDataFromStorage();
         whileLoop();
     }
-    
+
+    // Extract the while loop out of the main function
     private static void whileLoop() { 
     	while (true) {
     		String userCommand = getUserInput();
@@ -221,6 +222,7 @@ public class AddressBook {
     	    showResultToUser(feedback);
     	}
     }
+    //
     /*
      * NOTE : =============================================================
      * The method header comment can be omitted if the method is trivial
