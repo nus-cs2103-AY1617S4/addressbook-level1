@@ -134,6 +134,11 @@ public class AddressBook {
     private static final String COMMAND_EXIT_DESC = "Exits the program.";
     private static final String COMMAND_EXIT_EXAMPLE = COMMAND_EXIT_WORD;
 
+    private static final int ARGUMENTS_ZERO = 0;
+    private static final int ARGUMENTS_ONE = 1;
+    private static final int ARGUMENTS_TWO = 2;
+    private static final int ARGUMENTS_THREE = 3;
+    
     private static final String DIVIDER = "===================================================";
 
 
@@ -259,17 +264,17 @@ public class AddressBook {
      * @param args full program arguments passed to application main method
      */
     private static void processProgramArgs(String[] args) {
-        if (args.length >= 2) {
+        if (args.length > ARGUMENTS_ONE) {
         	String[] arrStr = {MESSAGE_INVALID_PROGRAM_ARGS};
             showToUser(arrStr);
             exitProgram();
         }
 
-        if (args.length == 1) {
+        if (args.length == ARGUMENTS_ONE) {
             setupGivenFileForStorage(args[0]);
         }
 
-        if(args.length == 0) {
+        if(args.length == ARGUMENTS_ZERO) {
             setupDefaultFileForStorage();
         }
     }
@@ -970,7 +975,7 @@ public class AddressBook {
     private static boolean isPersonDataExtractableFrom(String personData) {
         final String matchAnyPersonDataPrefix = PERSON_DATA_PREFIX_PHONE + '|' + PERSON_DATA_PREFIX_EMAIL;
         final String[] splitArgs = personData.trim().split(matchAnyPersonDataPrefix);
-        return splitArgs.length == 3 // 3 arguments
+        return splitArgs.length == ARGUMENTS_THREE // 3 arguments
                 && !splitArgs[0].isEmpty() // non-empty arguments
                 && !splitArgs[1].isEmpty()
                 && !splitArgs[2].isEmpty();
