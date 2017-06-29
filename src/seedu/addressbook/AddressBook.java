@@ -66,7 +66,7 @@ public class AddressBook {
      * at which java String.format(...) method can insert values.
      * =========================================================================
      */
-    private static final String MESSAGE_ADDED = "New person added: %1$s, Phone: %2$s, Email: %3$s";
+    private static final String MESSAGE_PERSON_ADDED = "New person added: %1$s, Phone: %2$s, Email: %3$s";
     private static final String MESSAGE_ADDRESSBOOK_CLEARED = "Address book has been cleared!";
     private static final String MESSAGE_COMMAND_HELP = "%1$s: %2$s";
     private static final String MESSAGE_COMMAND_HELP_PARAMETERS = "\tParameters: %1$s";
@@ -144,7 +144,7 @@ public class AddressBook {
 
     /* We use a String array to store details of a single person.
      * The constants given below are the indexes for the different data elements of a person
-     * used by the internal String[] storage format.
+     * used by the internal HashMap<PersonProperty, String> storage format.
      * For example, a person's name is stored as the 0th element in the array.
      */
 
@@ -175,7 +175,7 @@ public class AddressBook {
     /*
      * NOTE : =============================================================================================
      * Note that the type of the variable below can also be declared as List<String[]>, as follows:
-     *    private static final List<String[]> ALL_PERSONS = new ArrayList<>()
+     *    private static final List<HashMap<PersonProperty, String>> ALL_PERSONS = new ArrayList<>()
      * That is because List is an interface implemented by the ArrayList class.
      * In this code we use ArrayList instead because we wanted to to stay away from advanced concepts
      * such as interface inheritance.
@@ -449,7 +449,7 @@ public class AddressBook {
      * @return successful add person feedback message
      */
     private static String getMessageForSuccessfulAddPerson(HashMap<PersonProperty, String> personToAdd) {
-        return String.format(MESSAGE_ADDED,
+        return String.format(MESSAGE_PERSON_ADDED,
                 getNameFromPerson(personToAdd), getPhoneFromPerson(personToAdd), getEmailFromPerson(personToAdd));
     }
 
