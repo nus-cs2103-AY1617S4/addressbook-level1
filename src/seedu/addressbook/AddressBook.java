@@ -210,14 +210,17 @@ public class AddressBook {
         showWelcomeMessage();
         processProgramArgs(args);
         loadDataFromStorage();
-        while (true) {
-            String userCommand = getUserInput();
-            echoUserCommand(userCommand);
-            String feedback = executeCommand(userCommand);
-            showResultToUser(feedback);
-        }
+        whileLoop();
     }
-
+    
+    private static void whileLoop() { 
+    	while (true) {
+    		String userCommand = getUserInput();
+    		echoUserCommand(userCommand);
+    	    String feedback = executeCommand(userCommand);
+    	    showResultToUser(feedback);
+    	}
+    }
     /*
      * NOTE : =============================================================
      * The method header comment can be omitted if the method is trivial
